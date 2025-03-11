@@ -3,19 +3,251 @@
 @tailwind utilities;
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --font-size: 13.5px;
+  --ac-white-color: #fdfdfd;
+
+  --ac-primary-50: #eff4ff;
+  --ac-primary-100: #eff4ff;
+  --ac-primary-200: #dce6fd;
+  --ac-primary-300: #c0d4fd;
+  --ac-primary-400: #95b9fb;
+  --ac-primary-500: #6393f7;
+  --ac-primary-600: #3e6df3;
+  --ac-primary-700: #2c50e8;
+  --ac-primary-800: #203ad5;
+  --ac-primary-900: #202e88;
+  --ac-primary-925: #0c1f4b;
+  --ac-primary-950: #061945;
+
+
+  /* curious-blue */
+  --ac-secondary-50: #fff0f1;
+  --ac-secondary-100: #ffe2e6;
+  --ac-secondary-200: #ffcad2;
+  --ac-secondary-300: #c8ccd6;
+  --ac-secondary-400: #eb7f7e;
+  --ac-secondary-500: #ff9fad;
+  --ac-secondary-600: #ff6982;
+  --ac-secondary-700: #ff244e;
+  --ac-secondary-800: #ed1146;
+  --ac-secondary-900: #c8083b;
+  --ac-secondary-950: #a80938;
+
+  /* eastern-blue */
+  --ac-accent-50: #ebfffe;
+  --ac-accent-100: #dbebfe;
+  --ac-accent-200: #c0ddfd;
+  --ac-accent-300: #94c9fc;
+  --ac-accent-400: #62aaf8;
+  --ac-accent-500: #3d89f4;
+  --ac-accent-600: #276be9;
+  --ac-accent-700: #1f56d6;
+  --ac-accent-800: #2046ad;
+  --ac-accent-900: #1a3472;
+  --ac-accent-950: #182753;
+
+  /* shiraz */
+  --ac-alternate-50: #fbfff0;
+  --ac-alternate-100: #fcffe5;
+  --ac-alternate-200: #fffbcc;
+  --ac-alternate-300: #fee8a4;
+  --ac-alternate-400: #fdbf6d;
+  --ac-alternate-500: #f7803b;
+  --ac-alternate-600: #e63819;
+  --ac-alternate-700: #c20f18;
+  --ac-alternate-800: #a21035;
+  --ac-alternate-900: #881145;
+  --ac-alternate-950: #4e0430;
+
+  /* slate */
+  --ac-neutral-50: #f7f7f7;
+  --ac-neutral-100: #ededed;
+  --ac-neutral-200: #dfdfdf;
+  --ac-neutral-300: #c8c8c8;
+  --ac-neutral-400: #adadad;
+  --ac-neutral-500: #a1a1a1;
+  --ac-neutral-600: #838ca2;
+  --ac-neutral-700: #7b7b7b;
+  --ac-neutral-800: #676767;
+  --ac-neutral-900: #545454;
+  --ac-neutral-950: #363636;
+
+  /* Fuscous Gray */
+  --ac-body-50: #f6f6f6;
+  --ac-body-100: #e7e7e7;
+  --ac-body-200: #d1d1d1;
+  --ac-body-300: #b0b0b0;
+  --ac-body-400: #888888;
+  --ac-body-500: #6d6d6d;
+  --ac-body-600: #5d5d5d;
+  --ac-body-700: #515151;
+  --ac-body-800: #454545;
+  --ac-body-900: #3d3d3d;
+  --ac-body-950: #262626;
+
+
+
+  /* medium-carmine */
+  --ac-alert-50: #fdf4f3;
+  --ac-alert-100: #fce7e4;
+  --ac-alert-200: #f9d5cf;
+  --ac-alert-300: #f4b6ad;
+  --ac-alert-400: #ec8c7d;
+  --ac-alert-500: #e06653;
+  --ac-alert-600: #cc4a36;
+  --ac-alert-700: #ab3b2a;
+  --ac-alert-800: #8e3426;
+  --ac-alert-900: #763126;
+  --ac-alert-950: #40150f;
+
+
+  /* Chateau Green */
+  --ac-success-50: #f0fdf4;
+  --ac-success-100: #dcfce7;
+  --ac-success-200: #bbf7d0;
+  --ac-success-300: #86efad;
+  --ac-success-400: #4ade81;
+  --ac-success-500: #22c55f;
+  --ac-success-600: #16a34b;
+  --ac-success-700: #15803e;
+  --ac-success-800: #166535;
+  --ac-success-900: #14532d;
+  --ac-success-950: #052e16;
+
+}
+
+
+
+
+.site-color-palette {
+ 
+  --ac-white-color: #fdfdfd;
+
+  --ac-primary-50: #ecfbfe;
+  --ac-primary-100: #d0fafb;
+  --ac-primary-200: #a2f6f4;
+  --ac-primary-300: #6bebe7;
+  --ac-primary-400: #31d8ca;
+  --ac-primary-500: #0abda5;
+  --ac-primary-600: #00997a;
+  --ac-primary-700: #008060;
+  --ac-primary-800: #036343;
+  --ac-primary-900: #044e31;
+  --ac-primary-950: #012d1a;
+
+
+  /* curious-blue */
+  --ac-secondary-50: #f0fffb;
+  --ac-secondary-100: #e1fefa;
+  --ac-secondary-200: #bafdf6;
+  --ac-secondary-300: #7efcfa;
+  --ac-secondary-400: #3aebf8;
+  --ac-secondary-500: #0dc3e7;
+  --ac-secondary-600: #0299d9;
+  --ac-secondary-700: #035fa0;
+  --ac-secondary-800: #074383;
+  --ac-secondary-900: #0c306e;
+  --ac-secondary-950: #081849;
+
+  /* eastern-blue */
+  --ac-accent-50: #ebfffe;
+  --ac-accent-100: #ccfeff;
+  --ac-accent-200: #a3faff;
+  --ac-accent-300: #61f4ff;
+  --ac-accent-400: #16e5f8;
+  --ac-accent-500: #00cae0;
+  --ac-accent-600: #0098b3;
+  --ac-accent-700: #087c96;
+  --ac-accent-800: #10657a;
+  --ac-accent-900: #125568;
+  --ac-accent-950: #053748;
+
+  /* shiraz */
+  --ac-alternate-50: #fbfff0;
+  --ac-alternate-100: #fcffe5;
+  --ac-alternate-200: #fffbcc;
+  --ac-alternate-300: #fee8a4;
+  --ac-alternate-400: #fdbf6d;
+  --ac-alternate-500: #f7803b;
+  --ac-alternate-600: #e63819;
+  --ac-alternate-700: #c20f18;
+  --ac-alternate-800: #a21035;
+  --ac-alternate-900: #881145;
+  --ac-alternate-950: #4e0430;
+
+  /* slate */
+  --ac-neutral-50: #f8fafc;
+  --ac-neutral-100: #f1f5f9;
+  --ac-neutral-200: #e2e8f0;
+  --ac-neutral-300: #cbd5e1;
+  --ac-neutral-400: #94a3b8;
+  --ac-neutral-500: #64748b;
+  --ac-neutral-600: #475569;
+  --ac-neutral-700: #334155;
+  --ac-neutral-800: #1e293b;
+  --ac-neutral-900: #0f172a;
+  --ac-neutral-950: #020617;
+
+  /* Fuscous Gray */
+  --ac-body-50: #f6f6f6;
+  --ac-body-100: #e7e7e7;
+  --ac-body-200: #d1d1d1;
+  --ac-body-300: #b0b0b0;
+  --ac-body-400: #888888;
+  --ac-body-500: #6d6d6d;
+  --ac-body-600: #5d5d5d;
+  --ac-body-700: #515151;
+  --ac-body-800: #454545;
+  --ac-body-900: #3d3d3d;
+  --ac-body-950: #262626;
+
+
+
+  /* medium-carmine */
+  --ac-alert-50: #fdf4f3;
+  --ac-alert-100: #fce7e4;
+  --ac-alert-200: #f9d5cf;
+  --ac-alert-300: #f4b6ad;
+  --ac-alert-400: #ec8c7d;
+  --ac-alert-500: #e06653;
+  --ac-alert-600: #cc4a36;
+  --ac-alert-700: #ab3b2a;
+  --ac-alert-800: #8e3426;
+  --ac-alert-900: #763126;
+  --ac-alert-950: #40150f;
+
+
+  /* Chateau Green */
+  --ac-success-50: #f0fdf4;
+  --ac-success-100: #dcfce7;
+  --ac-success-200: #bbf7d0;
+  --ac-success-300: #86efad;
+  --ac-success-400: #4ade81;
+  --ac-success-500: #22c55f;
+  --ac-success-600: #16a34b;
+  --ac-success-700: #15803e;
+  --ac-success-800: #166535;
+  --ac-success-900: #14532d;
+  --ac-success-950: #052e16;
+
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+    
   }
 }
 
 body {
   color: var(--foreground);
   background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: Arial, Helvetica, sans-serif ,'Roboto';
+  font-size: 14px;
+}
+h1{
+  font-size: larger;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Poppins', sans-serif;
 }
