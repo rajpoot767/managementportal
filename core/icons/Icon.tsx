@@ -1,5 +1,6 @@
 import React, { FC } from 'react'
 import IconsMap from './IconsMap'
+import IconProps from './types'
 
 const Icon: FC<IconProps> = ({ name, className, ...props }) => {
     const IconComponent = IconsMap[name];
@@ -9,7 +10,6 @@ const Icon: FC<IconProps> = ({ name, className, ...props }) => {
         return null;
     }
     return <IconComponent {...props} className={className} />
-
 }
 
 export default Icon;

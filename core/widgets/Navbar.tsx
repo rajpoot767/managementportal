@@ -1,12 +1,12 @@
 "use client"
 import React, { useState } from "react";
 import Link from "next/link";
-import Image from "next/image";
-import WithLogin from "./avatar/WithLogin";
-import WithoutLogin from "./avatar/WithoutLogin";
 
 
-const Navbar: React.FC <WidgetProps> = (props) => {
+import Icon from "../icons/Icon";
+
+
+const Navbar: React.FC <WidgetProps> = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
 
@@ -15,29 +15,31 @@ const Navbar: React.FC <WidgetProps> = (props) => {
   };
 
   return (
-    <div className="bg-primary-950 py-3.5 w-full">
-      <div className="px-4 flex justify-between items-center">
+    <div className="bg-neutral-50 py-3.5 w-full">
+      <div className="px-4 flex justify-between items-center text-black">
         {/* Logo */}
-        <div>
-          <Image
+        <div className="flex items-center gap-2">
+          {/* <Image
             width={200}
             height={35}
             src="/assets/logo.png"
             alt="Logo"
-          />
+          /> */}
+          <Icon name="hospitalIcon" className="w-10 h-10 bg" />
+          <h3 className="text-2xl font-bold">Navi Hospital</h3>
         </div>
 
         {/* Desktop Navigation Links */}
-        <ul className="hidden lg:flex lg:items-center divide-x divide-neutral-600 lg:gap-2 xl:gap-4 text-secondary-300 font-semibold  ">
+        <ul className="hidden lg:flex lg:items-center divide-x divide-neutral-600 lg:gap-2 xl:gap-4  font-semibold  ">
           
           <li className="pl-4">
             <Link
-              href="/dashboard/templates"
+              href="/dashboard/ds"
               className={
-                "font-medium text-white uppercase"
+                "font-medium  uppercase"
               }
             >
-              Templates
+             Users Management
             </Link>
             </li>
             
@@ -45,55 +47,55 @@ const Navbar: React.FC <WidgetProps> = (props) => {
             <Link
               href="/dashboard/matches"
               className={
-                "font-medium text-white uppercase"
+                "font-medium  uppercase"
               }
             >
-              Active Matches
+              Roles & Permissions
             </Link>
             </li>
             <li className="pl-4">
             <Link
               href="/dashboard/matches/closeMatches"
               className={
-                "font-medium text-white uppercase"
+                "font-medium  uppercase"
               }
             >
-              Close Matches
+             Staff Scheduling
             </Link>
             </li>
             <li className="pl-4">
             <Link
               href="/dashboard/leads"
               className={
-                "font-medium text-white uppercase"
+                "font-medium uppercase"
               }
             >
-              Leads
+              Analysis & Reports
             </Link>
             </li>
 
-          <li className="pl-4  ">         
+          {/* <li className="pl-4  ">         
               {props.session && props.session?.truncatedIdentityNo && props.session?.oAuthToken ?<WithLogin path="" session={props.session} /> :< WithoutLogin/>}
-          </li>
+          </li> */}
         </ul>
 
         {/* Hamburger Menu for Mobile */}
         <button
           onClick={toggleMenu}
-          className="text-white md:hidden text-2xl"
+          className=" md:hidden text-2xl"
         >
           {isMenuOpen ? "×" : "☰"}
         </button>
       </div>
 
       {/* Mobile Dropdown Menu */}
-      {isMenuOpen && (
-        <div className={"  bg-primary-950 fixed top-16 left-0 w-full z-40 text-secondary-300 py-3 transition-all duration-200 ease-in-out"}>
+      {/* {isMenuOpen && (
+        <div className={"  bg-primary-950 fixed top-16 left-0 w-full z-40 py-3 transition-all duration-200 ease-in-out"}>
           <ul className="flex flex-col items-start px-6 space-y-4 font-semibold">
             <li>
               <Link
                 href="/"
-                className={"text-lg text-white "}
+                className={"text-lg  "}
               >
                 Home
               </Link>
@@ -102,7 +104,7 @@ const Navbar: React.FC <WidgetProps> = (props) => {
               <Link
                 href="/cricket/series/schedule"
                 className={
-                  "text-lg text-white"
+                  "text-lg "
                 }
               >
                 Schedule
@@ -112,7 +114,7 @@ const Navbar: React.FC <WidgetProps> = (props) => {
               <Link
                 href="/cricket/series/live-stream"
                 className={
-                  "text-lg text-white"
+                  "text-lg "
                 }
               >
                 Live Streaming
@@ -121,7 +123,7 @@ const Navbar: React.FC <WidgetProps> = (props) => {
             <li>
               <Link href="/cricket/series/live-score"
                 className={
-                  "text-lg text-white"
+                  "text-lg "
                 }
               >Live Score</Link>
             </li>
@@ -129,7 +131,7 @@ const Navbar: React.FC <WidgetProps> = (props) => {
               <Link
                 href="/cricket/series/match-highlights/search"
                 className={
-                  "text-lg text-white"
+                  "text-lg "
                 }
               >
                 Highlights
@@ -139,7 +141,7 @@ const Navbar: React.FC <WidgetProps> = (props) => {
               <Link
                 href="/pages/advertise-with-us"
                 className={
-                  "text-lg text-white "
+                  "text-lg  "
                 }
               >
                 Advertise with Us
@@ -166,7 +168,7 @@ const Navbar: React.FC <WidgetProps> = (props) => {
             </li>
           </ul>
         </div>
-      )}
+      )} */}
     </div>
   );
 };

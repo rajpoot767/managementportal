@@ -1,38 +1,43 @@
-import type { Metadata } from "next";
-// import localFont from "next/font/local";
-import "./globals.css";
-import Toast from "@/core/components/Toast";
-import { Poppins } from 'next/font/google';
-import { Roboto } from 'next/font/google';
-// import Footer from "@/core/widgets/home/Footer";
-// import Navbar from "@/core/widgets/home/Navbar";
-// @typescript-eslint/no-unused-vars
-const poppins = Poppins({
-  subsets: ['latin'],
-  weight: ['400', '600', '700'],
-});
+import type React from "react"
+import type { Metadata } from "next"
+import { Inter, SF_Pro_Display } from "next/font/google"
+import "./globals.css"
 
-const roboto = Roboto({
-  subsets: ['latin'],
-  weight: ['100', '300', '400', '500', '700', '900'], 
-});
+// Load Inter font
+const inter = Inter({
+  subsets: ["latin"],
+  display: "swap",
+  variable: "--font-inter",
+})
+
+// Load SF Pro Display font (using Inter as a fallback since SF Pro Display is not available on Google Fonts)
+const sfPro = Inter({
+  subsets: ["latin"],
+  display: "swap",
+  variable: "--font-display",
+})
 
 export const metadata: Metadata = {
-  title: "Sign In - StyxSports",
-  description: "Access your StyxSports account to explore the latest updates, track your activities, and stay connected to your favorite sports.",
-};
+  title: "MediCare Plus - Hospital Management System",
+  description: "Secure, HIPAA-compliant hospital management platform for healthcare professionals and administrators",
+  keywords: "hospital management, healthcare, HIPAA compliant, medical software, patient management",
+  authors: [{ name: "MediCare Plus Team" }],
+  viewport: "width=device-width, initial-scale=1",
+  robots: "noindex, nofollow", // For demo purposes
+}
 
 export default function RootLayout({
   children,
-}: Readonly<{
-  children: React.ReactNode;
-}>) {
+}: {
+  children: React.ReactNode
+}) {
   return (
-    <html lang="en" className={poppins.className}>
-      <body className={roboto.className} >     
-        {children}    
-        <Toast />
-      </body>
+    <html lang="en" className={`${inter.variable} ${sfPro.variable}`}>
+      <head>
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+      </head>
+      <body className="antialiased">{children}</body>
     </html>
-  );
+  )
 }

@@ -1,8 +1,7 @@
-interface QueryResponse<T> {
+export interface QueryResponse<T> {
     isSuccessful?: boolean;
     message?: string;
     errorNumber?: string;
-    result?: T[];
-    parent?:T;
+    result?: T;
     count?:number
   }
