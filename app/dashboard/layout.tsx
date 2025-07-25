@@ -3,6 +3,7 @@
 import { useEffect } from "react"
 import { useRouter, usePathname } from "next/navigation"
 import Sidebar from '@/core/widgets/Sidebar';
+import React, { useState } from 'react';
 
 const getCookie = (name: string) => {
   const value = `; ${document.cookie}`
@@ -18,6 +19,7 @@ const deleteCookie = (name: string) => {
 export default function DashboardLayout({ children }: { children: React.ReactNode }) {
   const router = useRouter()
   const pathname = usePathname()
+  const [sidebarWidth, setSidebarWidth] = useState(64); // default collapsed
 
   useEffect(() => {
     // Check if user is authenticated
@@ -50,8 +52,8 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
 
   return (
     <div className="min-h-screen bg-gray-50 flex">
-      <Sidebar />
-      <div className="flex-1 ml-16 lg:ml-64">
+      <Sidebar onWidthChange={setSidebarWidth} />
+      <div style={{ marginLeft: sidebarWidth, transition: 'margin-left 0.3s' }} className="flex-1">
         {/* Header */}
         <header className="bg-white shadow-sm">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -68,23 +70,21 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
                 </div>
               </div>
 
-              <div className="flex items-center space-x-4">
-                <div className="text-right">
-                  <p className="text-sm font-medium text-gray-900">{getCookie("userEmail")}</p>
-                  <p className="text-xs text-gray-500">
-                    {getCookie("userType") === "admin" ? "Administrator" : "Staff Member"}
-                  </p>
-                </div>
-                <button
-                  onClick={handleLogout}
-                  className="inline-flex items-center px-3 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-red-600 hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500"
-                >
-                  <svg className="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 24 24">
-                    <path d="M17 7l-1.41 1.41L18.17 11H8v2h10.17l-2.58 2.58L17 17l5-5zM4 5h8V3H4c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h8v-2H4V5z" />
-                  </svg>
-                  Sign Out
-                </button>
+              <div className="text-right">
+                <p className="text-sm font-medium text-gray-900">{getCookie("userEmail")}</p>
+                <p className="text-xs text-gray-500">
+                  {getCookie("userType") === "admin" ? "Administrator" : "Staff Member"}
+                </p>
               </div>
+              <button
+                onClick={handleLogout}
+                className="inline-flex items-center px-3 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-red-600 hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500"
+              >
+                <svg className="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 24 24">
+                  <path d="M17 7l-1.41 1.41L18.17 11H8v2h10.17l-2.58 2.58L17 17l5-5zM4 5h8V3H4c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h8v-2H4V5z" />
+                </svg>
+                Sign Out
+              </button>
             </div>
           </div>
         </header>

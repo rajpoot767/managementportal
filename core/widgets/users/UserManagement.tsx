@@ -202,15 +202,15 @@ export default function UserManagement({ userResponse }: UserManagementProps) {
   }
 
   return (
-    <div className="space-y-6 p-6">
-      <div className="flex justify-between items-center">
+    <div className="space-y-6 p-4 sm:p-6 max-w-screen-xl mx-auto w-full">
+      <div className="flex flex-col md:flex-row md:justify-between md:items-center gap-4">
         <div>
-          <h1 className="text-3xl font-bold animate-fade-in">User Management</h1>
-          <p className="text-muted-foreground animate-fade-in animation-delay-100">Manage hospital staff and their permissions</p>
+          <h1 className="text-2xl sm:text-3xl font-bold animate-fade-in">User Management</h1>
+          <p className="text-muted-foreground animate-fade-in animation-delay-100 text-sm sm:text-base">Manage hospital staff and their permissions</p>
         </div>
         <Dialog open={isAddUserOpen} onOpenChange={setIsAddUserOpen}>
           <DialogTrigger asChild>
-            <Button variant="gradient" animation="scale-in">
+            <Button variant="gradient">
               <Icon name="addIcon" className="h-4 w-4 mr-2" />
               Add User
             </Button>
@@ -227,8 +227,8 @@ export default function UserManagement({ userResponse }: UserManagementProps) {
 
       {/* Filters */}
       <Card className="animate-slide-from-right">
-        <CardContent className="pt-6">
-          <div className="flex gap-4">
+        <CardContent className="pt-4">
+          <div className="flex flex-col sm:flex-row gap-3 sm:gap-4">
             <SearchBar
               placeholder="Search users..."
               value={searchTerm}
@@ -249,7 +249,7 @@ export default function UserManagement({ userResponse }: UserManagementProps) {
                 { label: "Pharmacist", value: "pharmacist" },
                 { label: "Lab Technician", value: "lab_tech" },
               ]}
-              className="w-48"
+              className="w-full sm:w-48"
             />
           </div>
         </CardContent>
@@ -263,78 +263,80 @@ export default function UserManagement({ userResponse }: UserManagementProps) {
             {filteredUsers.length} of {users.length} users
           </CardDescription>
         </CardHeader>
-        <CardContent>
-          <Table>
-            <TableHeader>
-              <TableRow>
-                <TableHead>Name</TableHead>
-                <TableHead>Role</TableHead>
-                <TableHead>Department</TableHead>
-                <TableHead>Contact</TableHead>
-                <TableHead>Status</TableHead>
-                <TableHead className="w-[50px]"></TableHead>
-              </TableRow>
-            </TableHeader>
-            <TableBody>
-              {filteredUsers.map((user, index) => (
-                <TableRow key={user.id} className={`animate-fade-in`} style={{ animationDelay: `${index * 50}ms` }}>
-                  <TableCell>
-                    <div>
-                      <div className="font-medium">{user.name}</div>
-                      <div className="text-sm text-muted-foreground">{user.email}</div>
-                    </div>
-                  </TableCell>
-                  <TableCell>
-                    <Badge variant="outline" className="capitalize">
-                      {user.role.replace("_", " ")}
-                    </Badge>
-                  </TableCell>
-                  <TableCell>{user.department}</TableCell>
-                  <TableCell>
-                    <div className="space-y-1">
-                      <div className="flex items-center gap-1 text-sm">
-                        <Icon name="emailIcon" className="h-3 w-3" />
-                        {user.email}
-                      </div>
-                      <div className="flex items-center gap-1 text-sm">
-                        <Icon name="phoneIcon" className="h-3 w-3" />
-                        {user.phone}
-                      </div>
-                    </div>
-                  </TableCell>
-                  <TableCell>
-                    <Badge variant={user.status === "active" ? "default" : "secondary"}>{user.status}</Badge>
-                  </TableCell>
-                  <TableCell>
-                    <DropdownMenu>
-                      <DropdownMenuTrigger asChild>
-                        <Button variant="ghost" size="sm">
-                          <Icon name="menuIcon" className="h-4 w-4" />
-                        </Button>
-                      </DropdownMenuTrigger>
-                      <DropdownMenuContent align="end">
-                        <DropdownMenuItem>
-                          <Icon name="editIcon" className="h-4 w-4 mr-2" />
-                          Edit
-                        </DropdownMenuItem>
-                        <DropdownMenuItem>
-                          <Icon name="permissionsIcon" className="h-4 w-4 mr-2" />
-                          Permissions
-                        </DropdownMenuItem>
-                        <DropdownMenuItem onClick={() => toggleUserStatus(user.id)}>
-                          {user.status === "active" ? "Deactivate" : "Activate"}
-                        </DropdownMenuItem>
-                        <DropdownMenuItem onClick={() => deleteUser(user.id)} className="text-red-600">
-                          <Icon name="deleteIcon" className="h-4 w-4 mr-2" />
-                          Delete
-                        </DropdownMenuItem>
-                      </DropdownMenuContent>
-                    </DropdownMenu>
-                  </TableCell>
+        <CardContent className="p-0">
+          <div className="w-full overflow-x-auto scrollbar-thin scrollbar-thumb-gray-300 scrollbar-track-gray-100">
+            <Table>
+              <TableHeader>
+                <TableRow>
+                  <TableHead>Name</TableHead>
+                  <TableHead>Role</TableHead>
+                  <TableHead>Department</TableHead>
+                  <TableHead>Contact</TableHead>
+                  <TableHead>Status</TableHead>
+                  <TableHead className="w-[50px]"></TableHead>
                 </TableRow>
-              ))}
-            </TableBody>
-          </Table>
+              </TableHeader>
+              <TableBody>
+                {filteredUsers.map((user, index) => (
+                  <TableRow key={user.id} className={`animate-fade-in`} style={{ animationDelay: `${index * 50}ms` }}>
+                    <TableCell>
+                      <div>
+                        <div className="font-medium truncate max-w-[160px] sm:max-w-[220px] md:max-w-[300px]">{user.name}</div>
+                        <div className="text-sm text-muted-foreground truncate max-w-[160px] sm:max-w-[220px] md:max-w-[300px]">{user.email}</div>
+                      </div>
+                    </TableCell>
+                    <TableCell>
+                      <Badge variant="outline" className="capitalize">
+                        {user.role.replace("_", " ")}
+                      </Badge>
+                    </TableCell>
+                    <TableCell className="truncate max-w-[120px] sm:max-w-[180px]">{user.department}</TableCell>
+                    <TableCell>
+                      <div className="space-y-1">
+                        <div className="flex items-center gap-1 text-sm truncate max-w-[120px] sm:max-w-[180px]">
+                          <Icon name="emailIcon" className="h-3 w-3" />
+                          {user.email}
+                        </div>
+                        <div className="flex items-center gap-1 text-sm truncate max-w-[120px] sm:max-w-[180px]">
+                          <Icon name="phoneIcon" className="h-3 w-3" />
+                          {user.phone}
+                        </div>
+                      </div>
+                    </TableCell>
+                    <TableCell>
+                      <Badge variant={user.status === "active" ? "default" : "secondary"}>{user.status}</Badge>
+                    </TableCell>
+                    <TableCell>
+                      <DropdownMenu>
+                        <DropdownMenuTrigger asChild>
+                          <Button variant="ghost" size="sm">
+                            <Icon name="menuIcon" className="h-4 w-4" />
+                          </Button>
+                        </DropdownMenuTrigger>
+                        <DropdownMenuContent align="end">
+                          <DropdownMenuItem>
+                            <Icon name="editIcon" className="h-4 w-4 mr-2" />
+                            Edit
+                          </DropdownMenuItem>
+                          <DropdownMenuItem>
+                            <Icon name="permissionsIcon" className="h-4 w-4 mr-2" />
+                            Permissions
+                          </DropdownMenuItem>
+                          <DropdownMenuItem onClick={() => toggleUserStatus(user.id)}>
+                            {user.status === "active" ? "Deactivate" : "Activate"}
+                          </DropdownMenuItem>
+                          <DropdownMenuItem onClick={() => deleteUser(user.id)} className="text-red-600">
+                            <Icon name="deleteIcon" className="h-4 w-4 mr-2" />
+                            Delete
+                          </DropdownMenuItem>
+                        </DropdownMenuContent>
+                      </DropdownMenu>
+                    </TableCell>
+                  </TableRow>
+                ))}
+              </TableBody>
+            </Table>
+          </div>
         </CardContent>
       </Card>
     </div>

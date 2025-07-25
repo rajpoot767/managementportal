@@ -57,9 +57,16 @@ const menuItems = [
   },
 ];
 
-const Sidebar: React.FC = () => {
+const Sidebar: React.FC<{ onWidthChange?: (width: number) => void }> = ({ onWidthChange }) => {
   const [isCollapsed, setIsCollapsed] = useState(true);
   const pathName = usePathname();
+
+  // Optionally notify parent of width change
+  React.useEffect(() => {
+    if (onWidthChange) {
+      onWidthChange(isCollapsed ? 64 : 256); // 16px or 64px (w-16 or w-64)
+    }
+  }, [isCollapsed, onWidthChange]);
 
   return (
     <div
@@ -78,7 +85,7 @@ const Sidebar: React.FC = () => {
             </svg>
           </div>
           {!isCollapsed && (
-            <div className="ml-3">
+            <div className="ml-3 transition-opacity duration-300 opacity-100">
               <h2 className="text-lg font-semibold text-gray-900 capitalize">Admin</h2>
               <p className="text-xs text-gray-500">Hospital CMS</p>
             </div>
@@ -98,10 +105,15 @@ const Sidebar: React.FC = () => {
                 : 'text-gray-600 hover:bg-gray-50 hover:text-gray-900'
             }`}
           >
-            <span className={`flex-shrink-0 ${pathName.startsWith(item.href) ? 'text-current' : 'text-gray-400 group-hover:text-gray-600'}`}>{item.icon}</span>
-            {!isCollapsed && (
-              <span className="ml-3 text-sm font-medium">{item.name}</span>
-            )}
+            <span className={`flex-shrink-0 transition-none`}>{item.icon}</span>
+            <span
+              className={`ml-3 text-sm font-medium transition-all duration-300 ${
+                isCollapsed ? 'opacity-0 w-0 overflow-hidden' : 'opacity-100 w-auto'
+              }`}
+              style={{ transitionProperty: 'opacity, width' }}
+            >
+              {item.name}
+            </span>
           </Link>
         ))}
       </nav>
