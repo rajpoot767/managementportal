@@ -176,9 +176,9 @@ export default function LoginPage() {
                 <LoginForm userType={selectedUserType} onBack={handleBack} onShowToast={showToast} />
               )}
             </div>
-          </div>
         </div>
       </div>
+    </div>
 
       <Toast
         message={toast.message}

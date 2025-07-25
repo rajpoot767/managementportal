@@ -22,8 +22,12 @@ export const metadata: Metadata = {
   description: "Secure, HIPAA-compliant hospital management platform for healthcare professionals and administrators",
   keywords: "hospital management, healthcare, HIPAA compliant, medical software, patient management",
   authors: [{ name: "MediCare Plus Team" }],
-  viewport: "width=device-width, initial-scale=1",
   robots: "noindex, nofollow", // For demo purposes
+}
+
+export const viewport = {
+  width: "device-width",
+  initialScale: 1,
 }
 
 export default function RootLayout({
